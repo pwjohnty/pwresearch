@@ -6,10 +6,11 @@ namespace PeopleWithResearch
     public class Constants
     {
         //mark test comment
+        //Conal Test Test
         // public static string ApplicationURL = @"http://peoplewithmob.azurewebsites.net/"; //App Service URL
-     //    public static string ApplicationURL = @"https://peoplewithdevelopment.azurewebsites.net/"; //App Service URL "; //App Service URL
-      //  public static string ApplicationURL = @"https://pwdev2024.azurewebsites.net";
-       public static string ApplicationURL = @"https://jmlzj2jf6cvtq-service.azurewebsites.net";
+        //    public static string ApplicationURL = @"https://peoplewithdevelopment.azurewebsites.net/"; //App Service URL "; //App Service URL
+        //  public static string ApplicationURL = @"https://pwdev2024.azurewebsites.net";
+        public static string ApplicationURL = @"https://jmlzj2jf6cvtq-service.azurewebsites.net";
        // public static string ApplicationURL = @"https://peoplewith-research-maui-2024.azurewebsites.net";
 
         //public const string ListenConnectionString = "Endpoint=sb://PeopleWithResearchNotifcations.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=nXmDTTvexWnioeLhjXNP5BG/wAWblKdInnrpIVFNtZA=";
