@@ -7,6 +7,7 @@ using Mopups.Hosting;
 using Microsoft.Maui.Controls.Compatibility.Hosting;
 using Maui.FreakyControls.Extensions;
 
+
 namespace PeopleWithResearch
 {
     public static class MauiProgram
@@ -24,7 +25,8 @@ namespace PeopleWithResearch
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            
+            // Register your dependencies here
+            //  builder.Services.AddSingleton<CheckNotifications, CheckNotifications>();
 
 #if DEBUG
             builder.Logging.AddDebug();
@@ -39,7 +41,7 @@ namespace PeopleWithResearch
             //   AppCenter.SetUserId(Helpers.Settings.UserKey);
             // Register Application as a singleton
             //builder.Services.AddSingleton<Application>(App.Current);
-
+            builder.InitializeFreakyControls(useSkiaSharp: true);
             return builder.Build();
         }
     }

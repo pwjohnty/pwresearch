@@ -85,7 +85,7 @@
                                     </syncfusion1:SfRadioGroup>
 
                                     <Label Text="Number of Days:" x:Name="q1lbl" IsVisible="False" FontSize="12" TextColor="Black" Margin="10,10,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
-                                    <local:ExtendedEntry BackgroundColor="#EFF0F7" x:Name="q1entry" IsVisible="False" TextColor="Black" Placeholder="Enter Value" Keyboard="Numeric" Margin="10,0,10,0"/>
+                                    <local:ExtendedEntry BackgroundColor="#EFF0F7" x:Name="q1entry" IsVisible="False" TextColor="Black" PlaceholderColor="Gray" Placeholder="Enter Value" Keyboard="Numeric" Margin="10,0,10,0"/>
 
                                     <Label Text="Still Present" FontSize="12" x:Name="q1lbl1" IsVisible="False" TextColor="Black" Margin="10,10,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
                                     <syncfusion1:SfRadioGroup Orientation="Horizontal" x:Name="q1radiogroup" CheckedChanged="q1radiogroup_CheckedChanged" IsVisible="False" HorizontalOptions="CenterAndExpand">
@@ -111,7 +111,7 @@
 
                                     <StackLayout IsVisible="False" x:Name="q2stack">
                                     <Label Text="Number of Days:" FontSize="12" TextColor="Black" Margin="10,10,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
-                                    <local:ExtendedEntry BackgroundColor="#EFF0F7" TextColor="Black"  x:Name="q2entry" Placeholder="Enter Value" Keyboard="Numeric" Margin="10,0,10,0"/>
+                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" TextColor="Black"  x:Name="q2entry" PlaceholderColor="Gray" Placeholder="Enter Value" Keyboard="Numeric" Margin="10,0,10,0"/>
                                     
                                     <Label Text="Still Present" FontSize="12" TextColor="Black" Margin="10,10,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
                                     <syncfusion1:SfRadioGroup Orientation="Horizontal" x:Name="q2radio" CheckedChanged="q2radio_CheckedChanged" HorizontalOptions="CenterAndExpand">
@@ -136,7 +136,7 @@
 
                                     <StackLayout IsVisible="False" x:Name="q3stack">
                                         <Label Text="Number of Days:" FontSize="12" TextColor="Black" Margin="10,10,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
-                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" x:Name="q3entry" TextColor="Black" Placeholder="Enter Value" Keyboard="Numeric" Margin="10,0,10,0"/>
+                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" x:Name="q3entry" TextColor="Black" PlaceholderColor="Gray" Placeholder="Enter Value" Keyboard="Numeric" Margin="10,0,10,0"/>
 
                                         <Label Text="Still Present" FontSize="12" TextColor="Black" Margin="10,10,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
                                         <syncfusion1:SfRadioGroup Orientation="Horizontal" x:Name="q3radio" CheckedChanged="q3radio_CheckedChanged" HorizontalOptions="CenterAndExpand">
@@ -161,7 +161,7 @@
 
                                     <StackLayout IsVisible="False" x:Name="q4stack">
                                         <Label Text="Number of Days:" FontSize="12" TextColor="Black" Margin="10,10,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
-                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" x:Name="q4entry" TextColor="Black" Placeholder="Enter Value" Keyboard="Numeric" Margin="10,0,10,0"/>
+                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" x:Name="q4entry" TextColor="Black" PlaceholderColor="Gray" Placeholder="Enter Value" Keyboard="Numeric" Margin="10,0,10,0"/>
 
                                         <Label Text="Still Present" FontSize="12" TextColor="Black" Margin="10,10,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
                                         <syncfusion1:SfRadioGroup Orientation="Horizontal" x:Name="q4radio" CheckedChanged="q4radio_CheckedChanged" HorizontalOptions="CenterAndExpand">
@@ -310,7 +310,7 @@ Margin="0,0,0,0">
                                 <StackLayout Margin="10,0,10,0" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                                     <Label TextColor="Black" Text="If you answered 'Yes' to having diarrhoea roughly how many times did you go to the tiolet on the worst day (24 hours) of your illness?" Margin="0,0,0,0" FontAttributes="Bold" FontSize="14"/>
 
-                                    <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged" TextColor="Black" Placeholder="Number of Times:" Keyboard="Numeric" Margin="0,10,0,0"/>
+                                    <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged" TextColor="Black" PlaceholderColor="Gray" Placeholder="Number of Times:" Keyboard="Numeric" Margin="0,10,0,0"/>
                                 </StackLayout>
                             </Border>
 
@@ -320,7 +320,7 @@ Margin="0,0,0,0">
                                 <StackLayout Margin="10,0,10,0" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                                     <Label TextColor="Black" Text="If you answered 'Yes' to having vomiting roughly how many times did you vomit on the worst day (24 hours) of your illness?" Margin="0,0,0,0" FontAttributes="Bold" FontSize="14"/>
 
-                                    <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged_1" TextColor="Black" Placeholder="Number of Times:" Keyboard="Numeric" Margin="0,10,0,0"/>
+                                    <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged_1" TextColor="Black" PlaceholderColor="Gray" Placeholder="Number of Times:" Keyboard="Numeric" Margin="0,10,0,0"/>
                                 </StackLayout>
                             </Border>
 
@@ -815,7 +815,7 @@ Margin="0,0,0,0">
 
                                         <Label Text="If 'Yes' how many nights did you spend in hospital with this illness? " Margin="0,0,0,0" FontAttributes="Bold" FontSize="14"/>
 
-                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged_2" TextColor="Black" Placeholder="Enter Value" Keyboard="Numeric" Margin="0,10,0,0"/>
+                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged_2" TextColor="Black" PlaceholderColor="Gray" Placeholder="Enter Value" Keyboard="Numeric" Margin="0,10,0,0"/>
 
                                     </StackLayout>
                                 </StackLayout>
@@ -839,7 +839,7 @@ Margin="0,0,0,0">
                                     <StackLayout IsVisible="False" x:Name="q20stack">
                                         <Label TextColor="Black" Text="If 'Yes' how many days? " Margin="0,0,0,0" FontAttributes="Bold" FontSize="14"/>
 
-                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged_3" TextColor="Black" Placeholder="Enter Days" Keyboard="Numeric" Margin="0,10,0,0"/>
+                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged_3" TextColor="Black" PlaceholderColor="Gray" Placeholder="Enter Days" Keyboard="Numeric" Margin="0,10,0,0"/>
 
                                     </StackLayout>
                                 </StackLayout>
@@ -974,7 +974,7 @@ Margin="0,0,0,0">
 
                                         <Label TextColor="Black" Text="If you were abroad please tell us which country or countries you visited: " Margin="0,0,0,0" FontAttributes="Bold" FontSize="14"/>
 
-                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged_4" TextColor="Black" Placeholder="Enter Countries" Keyboard="Text" Margin="0,10,0,0"/>
+                                        <local:ExtendedEntry BackgroundColor="#EFF0F7" TextChanged="ExtendedEntry_TextChanged_4" TextColor="Black" PlaceholderColor="Gray" Placeholder="Enter Countries" Keyboard="Text" Margin="0,10,0,0"/>
 
                                     </StackLayout>
 

@@ -108,7 +108,7 @@ namespace PeopleWithResearch
             meddirectionsmanager = MedDirectionsManager.DefaultManager;
             questionamanager = QuestionManager.DefaultManager;
             answermanager = AnswerManager.DefaultManager;
-           // Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
+            // Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
 
             FeaturesForReg = Regpassedfeatures;
 
@@ -565,14 +565,14 @@ namespace PeopleWithResearch
                 var totalnum = FeaturesForReg.Count() + additionalfeaturespassed;
                 double num = (100 / totalnum);
 
-                topprogress.AnimationDuration = 0;
+                topprogress.AnimationDuration = 3;
 
                 //set the progress amount
                 progressamount = num;
                 topprogress.Progress = num + passedprogressbaramount;
 
 
-                topprogress.AnimationDuration = 2;
+                
 
 
                 //topprogress.SetProgress(passedprogressbaramount,0,Easing.BounceIn);
@@ -969,7 +969,7 @@ namespace PeopleWithResearch
 
                 // getconsentdetailsonload();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 DisplayAlert("Error", ex.Message.ToString(), "OK");
                 DisplayAlert("Error", ex.StackTrace.ToString(), "OK");
@@ -1650,7 +1650,7 @@ namespace PeopleWithResearch
                 else if (emisconsentframe2.IsVisible == true)
                 {
 
-                   
+
                     //if (checkbox1.IsChecked == true && checkbox2.IsChecked == true && checkbox3.IsChecked == true && checkbox4.IsChecked == true && checkbox5.IsChecked == true && checkbox6.IsChecked == true && checkbox7.IsChecked == true)
                     //{
                     //    // all selected 
@@ -1688,7 +1688,7 @@ namespace PeopleWithResearch
 
                         }
 
-                       
+
                         await DisplayAlert("Attention", "It looks like you missed some. Please review and agree to all before proceeding", "OK");
                         return;
                     }
@@ -1697,7 +1697,7 @@ namespace PeopleWithResearch
                     emisconsentframe3.IsVisible = true;
                     topprogress.Progress += progressamount;
                     numberforfeatures++;
-                 
+
                     return;
 
                 }
@@ -2042,7 +2042,7 @@ namespace PeopleWithResearch
 
                         var newuserquestionnaireid = new UserQuestionnaire();
 
-                      //  await Navigation.PushAsync(new QuestionnairePageGP(iid32questions, iid32answers, newuserquestionnaireid, iid32, completedquestions, questionanswers, newuser, signpad, ConsentDetails, under18, nameofchildentry.Text, nameofparententry.Text, consentdetailslist, selectedconsentlist), false);
+                        //  await Navigation.PushAsync(new QuestionnairePageGP(iid32questions, iid32answers, newuserquestionnaireid, iid32, completedquestions, questionanswers, newuser, signpad, ConsentDetails, under18, nameofchildentry.Text, nameofparententry.Text, consentdetailslist, selectedconsentlist), false);
 
                         await Navigation.PushAsync(new QuestionnairePageHardCoded32(iid32questions, iid32answers, newuserquestionnaireid, iid32, completedquestions, questionanswers, newuser, signpad, ConsentDetails, under18, nameofchildentry.Text, nameofparententry.Text, consentdetailslist, selectedconsentlist), false);
 

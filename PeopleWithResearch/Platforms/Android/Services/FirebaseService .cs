@@ -100,7 +100,7 @@ namespace PeopleWithResearch.Platforms.Android.Services
             var pendingIntent = PendingIntent.GetActivity(this, 0, intent, PendingIntentFlags.OneShot | PendingIntentFlags.Immutable);
 
             var notificationBuilder = new NotificationCompat.Builder(this, PRIMARY_CHANNEL)
-                .SetSmallIcon(Resource.Drawable.material_ic_calendar_black_24dp)
+                .SetSmallIcon(Resource.Drawable.pwrappicon)
                 .SetContentText(body)
                 .SetAutoCancel(true)
                 .SetShowWhen(false)
@@ -115,7 +115,7 @@ namespace PeopleWithResearch.Platforms.Android.Services
             }
             else
             {
-                notificationBuilder.SetSmallIcon(Resource.Drawable.material_ic_menu_arrow_down_black_24dp);
+                notificationBuilder.SetSmallIcon(Resource.Drawable.pwrappicon);
             }
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)

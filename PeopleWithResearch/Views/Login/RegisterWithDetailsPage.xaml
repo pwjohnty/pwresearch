@@ -158,9 +158,9 @@ Grid.Row="0" HorizontalOptions="Center"
 
                             <Label Text="Select your GP Location" HorizontalOptions="Center" HorizontalTextAlignment="Center"   FontAttributes="Bold" TextColor="Black" FontSize="26" />
                             <Label Text="Please enter your GP number and select your GP location and press 'Next' to continue."  HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Gray" FontSize="15" />
-
-                            <local:ExtSearchBar  Placeholder="Search Location" SearchButtonPressed="searchbargp_SearchButtonPressed" x:Name="searchbargp" Margin="0,0,0,0" TextChanged="searchbargp_TextChanged" TextColor="Black" PlaceholderColor="#818185" BackgroundColor="White" HeightRequest="40" />
-
+                            <Frame Padding="0" Margin="0,20,0,0" BorderColor="#E6E6E6" BackgroundColor="#E6E6E6" CornerRadius="20" HasShadow="False">
+                                <SearchBar HeightRequest="60"  Placeholder="Search Location" BackgroundColor="Transparent" FontSize="16" SearchButtonPressed="searchbargp_SearchButtonPressed" x:Name="searchbargp" Margin="0,0,0,0" TextChanged="searchbargp_TextChanged" TextColor="Black" PlaceholderColor="Black"  />
+                            </Frame>
 
                             <Label Text="No Locations found" x:Name="cantlbl1" IsVisible="false"  HorizontalOptions="Center" Margin="0,30,0,0" HorizontalTextAlignment="Center" TextColor="Black" FontAttributes="Bold"  FontSize="15" />
                             <Label Text="Please try again" x:Name="cantlbl2" IsVisible="false"   HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Gray" FontSize="12" />

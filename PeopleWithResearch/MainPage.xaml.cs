@@ -1,4 +1,5 @@
-﻿using Microsoft.AppCenter.Analytics;
+﻿
+using Microsoft.AppCenter.Analytics;
 using System.Collections.ObjectModel;
 
 namespace PeopleWithResearch
@@ -29,9 +30,9 @@ namespace PeopleWithResearch
                 initialquestionsmanager = initialQuestionsManager.DefaultManager;
                 initialquestionsanswersmanager = initialQuestionsAnswersManager.DefaultManager;
                 featuresmanager = FeatureManager.DefaultManager;
-
+               
                 // Get Metrics
-                var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
                 // Height (in pixels)
                 var height = mainDisplayInfo.Height;
                 //iphone 8 or below
@@ -100,7 +101,7 @@ namespace PeopleWithResearch
             }
         }
 
-
+       
         async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
             try
@@ -322,7 +323,7 @@ namespace PeopleWithResearch
         {
             try
             {
-                await Navigation.PushAsync(new RegisterWithDetailsPage(), false);
+                 await Navigation.PushAsync(new RegisterWithDetailsPage(), false);
 
                 // Analytics.TrackEvent("Register with details Clicked");
             }
@@ -377,13 +378,13 @@ namespace PeopleWithResearch
             }
         }
 
-        async void btnmain_Clicked(System.Object sender, System.EventArgs e)
+         async void btnmain_Clicked(System.Object sender, System.EventArgs e)
         {
             try
             {
                 await Navigation.PushAsync(new RegisterPage(checkuser[0], questions, questionanswers, FeaturesForReg), false);
 
-                Analytics.TrackEvent("Registration Signup Start Clicked");
+               Analytics.TrackEvent("Registration Signup Start Clicked");
             }
             catch (Exception ex)
             {

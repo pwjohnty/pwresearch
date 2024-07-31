@@ -134,7 +134,7 @@ Grid.Row="0" HorizontalOptions="Center"
                                         <ColumnDefinition Width="90*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    
+
                                     <CheckBox Grid.Column="0" Grid.Row="0" Color="#009fe3"  x:Name="tccheckbox" IsChecked="False" HorizontalOptions="Start" Margin="0,-5,0,0" VerticalOptions="Center" CheckedChanged="tccheckbox_CheckedChanged" >
                                     </CheckBox>
 
@@ -290,7 +290,7 @@ Grid.Row="0" HorizontalOptions="Center"
                                     <DataTemplate>
                                         <ViewCell>
                                             <Border StrokeShape="RoundRectangle 10" Padding="10" BackgroundColor="#f8f8f8" Stroke="#f8f8f8" Margin="0,5,0,5" Opacity="1">
-                                         
+
                                                 <Grid HorizontalOptions="FillAndExpand" Margin="0" Padding="0"  >
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto"/>
@@ -313,7 +313,7 @@ Grid.Row="0" HorizontalOptions="Center"
                                     <DataTemplate>
                                         <ViewCell>
                                             <Border StrokeShape="RoundRectangle 10" Padding="10" BackgroundColor="#f8f8f8" Stroke="#f8f8f8" Margin="0,5,0,5" >
-                                        
+
                                                 <Grid HorizontalOptions="FillAndExpand" Margin="0" Padding="0"  >
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto"/>
@@ -1167,24 +1167,24 @@ Grid.Row="0" HorizontalOptions="Center"
                        BorderColor="#f8f8f8" Opacity="{Binding Activeop}" IsEnabled="{Binding Isquestionactive}"
        Padding="0">
                                                 <ScrollView>
-                                                <StackLayout Margin="10,0,10,10">
-                                                    <Label Text="{Binding Directions}" FontSize="12" TextColor="Gray"  Grid.Row="1" Margin="0,0,0,5" Grid.Column="0" Grid.ColumnSpan="4" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
+                                                    <StackLayout Margin="10,0,10,10">
+                                                        <Label Text="{Binding Directions}" FontSize="12" TextColor="Gray"  Grid.Row="1" Margin="0,0,0,5" Grid.Column="0" Grid.ColumnSpan="4" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
 
 
-                                                    <!--Type Number entry-->
-                                                    <StackLayout IsVisible="{Binding TypeNumberEntry}">
+                                                        <!--Type Number entry-->
+                                                        <StackLayout IsVisible="{Binding TypeNumberEntry}">
 
-                                                        <local:ExtendedEntry IDValue="{Binding Id}" TextColor="Black" BackgroundColor="White" TextChanged="ExtendedEntry_TextChanged" Placeholder="Enter Number" Keyboard="Numeric" Margin="0,0,10,0"/>
+                                                            <local:ExtendedEntry IDValue="{Binding Id}" TextColor="Black" BackgroundColor="White" TextChanged="ExtendedEntry_TextChanged" PlaceholderColor="Gray" Placeholder="Enter Number" Keyboard="Numeric" Margin="0,0,10,0"/>
 
-                                                    </StackLayout>
+                                                        </StackLayout>
 
 
-                                                    <!--Type Single Selection-->
-                                                    <StackLayout IsVisible="{Binding Typess}">
+                                                        <!--Type Single Selection-->
+                                                        <StackLayout IsVisible="{Binding Typess}">
 
-                                                        <!---->
-                                                        <!--LineBreakMode="WordWrap" removed from this-->
-                                                        
+                                                            <!---->
+                                                            <!--LineBreakMode="WordWrap" removed from this-->
+
                                                             <syncfusion2:SfRadioGroup VerticalOptions="FillAndExpand" Orientation="Vertical">
                                                                 <local:ExtendedRadioButton  IDValue="{Binding Id}"  StateChanged="ExtendedRadioButton_StateChanged" FontSize="14" CheckedColor="#0F9FE2" TextColor="Black"  Margin="0,0,5,5"  Text="{Binding Value0}"  />
                                                                 <local:ExtendedRadioButton  IDValue="{Binding Id}"  StateChanged="ExtendedRadioButton_StateChanged_1"  FontSize="14" CheckedColor="#0F9FE2" TextColor="Black" Margin="0,0,5,5"    Text="{Binding Value1}" />
@@ -1202,35 +1202,35 @@ Grid.Row="0" HorizontalOptions="Center"
                                                                 <local:ExtendedRadioButton IDValue="{Binding Id}"  StateChanged="ExtendedRadioButton_StateChanged_7"  FontSize="14" CheckedColor="#0F9FE2" TextColor="Black" Margin="0,0,5,5"  Text="{Binding Value13}" IsVisible="{Binding Hide14}"  />
                                                                 <local:ExtendedRadioButton IDValue="{Binding Id}"  StateChanged="ExtendedRadioButton_StateChanged_7"  FontSize="14" CheckedColor="#0F9FE2" TextColor="Black" Margin="0,0,5,5"  Text="{Binding Value14}" IsVisible="{Binding Hide15}"  />
                                                             </syncfusion2:SfRadioGroup>
-                                                       
 
 
-                                                        <Label Text="Please State:" FontSize="12" TextColor="Black" IsVisible="{Binding Showadditionalgenderdropdown}"  Margin="0,0,0,5" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
 
-                                                        <local:ExtendedEntry IDValue="{Binding Id}" TextColor="Black" IsVisible="{Binding Showadditionalgenderdropdown}" x:Name="genderentry" TextChanged="genderentry_TextChanged" BackgroundColor="White"  Placeholder="Enter Gender" Keyboard="Text" Margin="0,0,0,0"/>
+                                                            <Label Text="Please State:" FontSize="12" TextColor="Black" IsVisible="{Binding Showadditionalgenderdropdown}"  Margin="0,0,0,5" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>
+
+                                                            <local:ExtendedEntry IDValue="{Binding Id}" TextColor="Black" IsVisible="{Binding Showadditionalgenderdropdown}" x:Name="genderentry" TextChanged="genderentry_TextChanged" BackgroundColor="White" PlaceholderColor="Gray" Placeholder="Enter Gender" Keyboard="Text" Margin="0,0,0,0"/>
+
+
+                                                        </StackLayout>
+
+
+
+
+                                                        <!--Type Entry-->
+                                                        <StackLayout IsVisible="{Binding TypeEntry}">
+
+                                                            <local:ExtendedEntry IDValue="{Binding Id}" TextColor="Black" BackgroundColor="White" PlaceholderColor="Gray" Placeholder="Enter Answer" TextChanged="ExtendedEntry_TextChanged_1"   Keyboard="Text"  Margin="0,0,10,0"/>
+
+                                                        </StackLayout>
+
+                                                        <!--<BoxView HeightRequest="2" Color="#009fe3" Margin="25,20,25,0" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />-->
+
+                                                        <!--<Label Text="{Binding Rownum}" LineHeight="1.4"  FontSize="18" TextColor="Black"  Margin="0,0,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>-->
+
+
+                                                        <!--<BoxView HeightRequest="2" Color="LightGray" Margin="50,30,50,30" />-->
 
 
                                                     </StackLayout>
-
-
-
-
-                                                    <!--Type Entry-->
-                                                    <StackLayout IsVisible="{Binding TypeEntry}">
-
-                                                        <local:ExtendedEntry IDValue="{Binding Id}" TextColor="Black" BackgroundColor="White" Placeholder="Enter Answer" TextChanged="ExtendedEntry_TextChanged_1"   Keyboard="Text"  Margin="0,0,10,0"/>
-
-                                                    </StackLayout>
-
-                                                    <!--<BoxView HeightRequest="2" Color="#009fe3" Margin="25,20,25,0" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />-->
-
-                                                    <!--<Label Text="{Binding Rownum}" LineHeight="1.4"  FontSize="18" TextColor="Black"  Margin="0,0,0,0" FontAttributes="Bold" VerticalOptions="Start" HorizontalOptions="Start"/>-->
-
-
-                                                    <!--<BoxView HeightRequest="2" Color="LightGray" Margin="50,30,50,30" />-->
-
-
-                                                </StackLayout>
                                                 </ScrollView>
                                             </Frame>
                                         </ViewCell>

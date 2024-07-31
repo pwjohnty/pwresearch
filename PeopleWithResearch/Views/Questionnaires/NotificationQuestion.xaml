@@ -5,8 +5,7 @@
                  BackgroundColor="#F1F2F6"
                              xmlns:animations="clr-namespace:Mopups.Animations;assembly=Mopups"
               xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
-                  xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups" Shell.NavBarIsVisible="False"
-            >
+                  xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups" Shell.NavBarIsVisible="False" NavigationPage.HasNavigationBar="False">
 
     <mopup:PopupPage.Animation>
         <animations:ScaleAnimation
@@ -119,7 +118,7 @@
 
 
 
-                        <Label Text="Weekly Follow-up - Next Step:"  HorizontalOptions="Center"  TextColor="Black" FontSize="24" FontAttributes="Bold" VerticalTextAlignment="Center" >
+                        <Label Text="Weekly Follow-up - Next Step:"  HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="24" FontAttributes="Bold" VerticalTextAlignment="Center" >
 
                         </Label>
 

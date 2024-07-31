@@ -10,7 +10,7 @@
 
                 <Label x:Name="titlelabel" TextColor="Black"  FontAttributes="Bold" FontSize="18" Margin="0,0,0,20"/>
 
-                <Editor x:Name="bodylabel" HeightRequest="10000" BackgroundColor="Transparent" IsReadOnly="True" TextColor="Black" FontSize="12"/>
+                <Editor x:Name="bodylabel" HeightRequest="11500" BackgroundColor="Transparent" IsReadOnly="True" TextColor="Black" FontSize="12"/>
 
             </StackLayout>
 

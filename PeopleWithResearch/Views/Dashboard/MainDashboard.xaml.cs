@@ -2006,21 +2006,20 @@ namespace PeopleWithResearch
                     return;
                 }
 
-
-                //check if notifcations are switched on
-
-
-                bool isNotificationEnabled = DependencyService.Get<CheckNotifications>().GetApplicationNotificationSettings();
-
-                if (isNotificationEnabled == true)
+                if (DeviceInfo.Current.Platform == DevicePlatform.Android)
                 {
-                    notificationframe.IsVisible = false;
+                    //check if notifcations are switched on
+                    PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.PostNotifications>();
+                    // bool isNotificationEnabled = DependencyService.Get<CheckNotifications>().GetApplicationNotificationSettings();
+                    if (status == PermissionStatus.Granted)
+                    {
+                        notificationframe.IsVisible = false;
+                    }
+                    else
+                    {
+                        notificationframe.IsVisible = true;
+                    }
                 }
-                else
-                {
-                    notificationframe.IsVisible = true;
-                }
-
 
             }
             catch (Exception ex)
@@ -2442,8 +2441,8 @@ namespace PeopleWithResearch
 
                 // Start the timer
                 // TODO Xamarin.Forms.Device.StartTimer is no longer supported. Use Microsoft.Maui.Dispatching.DispatcherExtensions.StartTimer instead. For more details see https://learn.microsoft.com/en-us/dotnet/maui/migration/forms-projects#device-changes
-                Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-                {
+                //Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+                //{
 
 
                     // Update the label text with the remaining time
@@ -2455,8 +2454,8 @@ namespace PeopleWithResearch
 
 
                     // Return true to continue the timer, or false to stop it
-                    return timeUntilNextQuestionnaire > TimeSpan.Zero;
-                });
+                //    return timeUntilNextQuestionnaire > TimeSpan.Zero;
+                //});
 
 
 
@@ -3066,22 +3065,39 @@ namespace PeopleWithResearch
 
             try
             {
+                if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+                {
+
+                    await Permissions.RequestAsync<Permissions.PostNotifications>();
+
+                    //check if notifcations are switched on
+                    PermissionStatus status = await Permissions.CheckStatusAsync<Permissions.PostNotifications>();
+                    // bool isNotificationEnabled = DependencyService.Get<CheckNotifications>().GetApplicationNotificationSettings();
+                    if (status == PermissionStatus.Granted)
+                    {
+                        notificationframe.IsVisible = false;
+                    }
+                    else
+                    {
+                        notificationframe.IsVisible = true;
+                    }
+                }
 
                 // Request notification permissions using DependencyService
-                bool permissionsGranted = await DependencyService.Get<INotificationPermissionService>().RequestNotificationPermissions();
+                //bool permissionsGranted = await DependencyService.Get<INotificationPermissionService>().RequestNotificationPermissions();
 
-                if (permissionsGranted)
-                {
-                    // Notification permissions granted
-                    // You can update UI or perform additional actions here
-                    notificationframe.IsVisible = false;
-                }
-                else
-                {
-                    // Notification permissions not granted
-                    // You can handle this case accordingly
-                    notificationframe.IsVisible = false;
-                }
+                //if (permissionsGranted)
+                //{
+                //    // Notification permissions granted
+                //    // You can update UI or perform additional actions here
+                //    notificationframe.IsVisible = false;
+                //}
+                //else
+                //{
+                //    // Notification permissions not granted
+                //    // You can handle this case accordingly
+                //    notificationframe.IsVisible = false;
+                //}
 
 
             }
@@ -3090,6 +3106,81 @@ namespace PeopleWithResearch
                 var s = ex.StackTrace.ToString();
                 var ss = "sds";
             }
+        }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                //find out what week the user is on
+                DateTime userCreationDate = DateTime.Parse(getuser[0].ActivationDT);
+
+                //DateTime userCreationDate = DateTime.Parse(Helpers.Settings.CreatedAt);
+                DateTime currentDate = DateTime.Now;
+
+                var plus7days = userCreationDate.AddDays(7);
+
+                weekNumber = (int)Math.Ceiling(currentDate.Subtract(plus7days).TotalDays / 7);
+
+                if (weekNumber < 0)
+                {
+                    weekNumber = 0;
+                }
+                // Calculate the difference in days
+
+                int differenceInDays = (int)(plus7days - DateTime.Now).TotalDays;
+
+                //add 7 days to created at date to see if zero week has to be shown
+
+
+
+                // Check if the absolute difference is less than or equal to 7 days
+                if (DateTime.Now < plus7days)
+                {
+                    weekzeroframe.IsVisible = true;
+                    mainquestionview.IsVisible = false;
+                    progresstextlbl.IsVisible = false;
+                    progressgrid.IsVisible = false;
+                }
+                else
+                {
+
+                    weekzeroframe.IsVisible = false;
+                    mainquestionview.IsVisible = true;
+                }
+
+
+                //find out the timer time to the next questionnaire
+                DateTime nextQuestionnaireDate = plus7days.AddDays((weekNumber) * 7);
+                TimeSpan timeUntilNextQuestionnaire = nextQuestionnaireDate - currentDate;
+
+
+                weeknumlbl.Text = "Week " + weekNumber.ToString() + " of 52";
+                weeknumlbl2.Text = "Week " + weekNumber.ToString() + " of 52";
+
+                // Start the timer
+                // TODO Xamarin.Forms.Device.StartTimer is no longer supported. Use Microsoft.Maui.Dispatching.DispatcherExtensions.StartTimer instead. For more details see https://learn.microsoft.com/en-us/dotnet/maui/migration/forms-projects#device-changes
+                //Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+                //{
+
+
+                    // Update the label text with the remaining time
+                    //  timerlbl.Text = $"Time remaining: {timeRemaining.Days} :, {timeRemaining.Hours} :, {timeRemaining.Minutes} :, {timeRemaining.Seconds}";
+
+                    dayslbl.Text = timeUntilNextQuestionnaire.Days.ToString("D2");
+                    hourslbl.Text = timeUntilNextQuestionnaire.Hours.ToString("D2");
+                    minuteslbl.Text = timeUntilNextQuestionnaire.Minutes.ToString("D2");
+
+
+                    // Return true to continue the timer, or false to stop it
+                //    return timeUntilNextQuestionnaire > TimeSpan.Zero;
+                //});
+            }
+            catch(Exception ex)
+            {
+
+            }
+
         }
     }
 }

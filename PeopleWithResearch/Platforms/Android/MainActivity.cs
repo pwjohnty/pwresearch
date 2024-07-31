@@ -1,10 +1,13 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.Mtp;
 using Android.Nfc;
 using Android.OS;
 using AndroidX.AppCompat.App;
+using AndroidX.Core.App;
+using AndroidX.Core.Content;
 using AndroidX.Navigation;
 using Firebase.Messaging;
 using Microsoft.Azure.NotificationHubs;
@@ -43,6 +46,12 @@ namespace PeopleWithResearch
                 hub = NotificationHubClient.CreateClientFromConnectionString(Constants.ListenConnectionString, Constants.NotificationHubName);
 
                 CreateNotificationChannel();
+
+                //First Prompt to allow Notifications, From android 13 and above
+                if(ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) != Permission.Granted)
+                {
+                    ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.PostNotifications }, 0);
+                }
             }
             catch (Exception ex)
             {

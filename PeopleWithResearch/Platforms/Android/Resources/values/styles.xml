@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<resources>
-	<style name="Maui.SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-		<item name="android:windowBackground">@mipmap/pwrappicon</item>
-		<item name="android:windowSplashScreenBackground">@color/Splash</item>
-		<item name="android:windowLightStatusBar">true</item>
-	</style>
-</resources>

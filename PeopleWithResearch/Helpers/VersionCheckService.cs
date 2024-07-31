@@ -26,7 +26,7 @@ namespace PeopleWithResearch
         {
             
             // Add the new app version on every update
-            return await Task.FromResult("3.0.1"); // Replace with actual implementation
+            return await Task.FromResult("1.17"); // Replace with actual implementation
         }
 
         public async Task CheckForUpdate()

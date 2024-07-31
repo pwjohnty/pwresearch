@@ -8,7 +8,8 @@ using System;
 using Application = Android.App.Application;
 using Android.Content;
 
-[assembly: Dependency(typeof(NotificationCheckAndroid))]
+[assembly: Microsoft.Maui.Controls.Dependency(typeof(CheckNotifications))]
+//[assembly: Dependency(typeof(NotificationCheckAndroid))]
 
 namespace YourAppName.Droid.Services
 {
