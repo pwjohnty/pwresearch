@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             BackgroundColor="White" NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False"
+             x:Class="PeopleWithResearch.MainPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ScrollView x:Name="mainscroll" Grid.Row="0">
+                <StackLayout>
+                    <Image Source="peoplewithresearchlogowhite.png" x:Name="mainimg" BackgroundColor="Transparent" Margin="0,20,0,0" HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Start" />
+                    <Label Text="Your Research Code" x:Name="mainlbl" HorizontalOptions="Center"  TextColor="Black" FontSize="30" FontAttributes="Bold"  Margin="0,0,0,0" ></Label>
+                    <Label HorizontalOptions="Center"
+HorizontalTextAlignment="Center"
+Margin="20,0,20,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Thank you for your interest in taking part, if you have copied a code " FontSize="18" TextColor="Gray" />
+                                <Span Text="Tap on the 'Paste Research Code' button and accept the on-screen prompt." TextColor="Gray"
+           FontSize="18"
+           FontAttributes="Bold" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--<inputLayout:SfTextInputLayout
+ContainerType="Filled" FocusedColor="White" ContainerBackgroundColor="White" HorizontalOptions="CenterAndExpand" Opacity="0.7" UnfocusedColor="#009FE3"
+Hint="" Margin="20,20,20,0"
+Grid.Row="0" Grid.Column="0"
+ReserveSpaceForAssistiveLabels="False">
+<local:HideKeyboardEntry x:Name="pasteentry" Focused="pasteentry_Focused"  Placeholder="" HorizontalTextAlignment="Center" TextColor="Black" FontSize="12" />
+</inputLayout:SfTextInputLayout>-->
+                        <Label Text="" x:Name="pasteentry" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" HorizontalTextAlignment="Center"  TextColor="Black" FontSize="14" FontAttributes="None"  Margin="20,20,20,0" ></Label>
+                        <BoxView Grid.Row="1" Grid.Column="0" HeightRequest="1" Color="#009FE3" HorizontalOptions="FillAndExpand" Margin="20,10,20,0"/>
+                        <Button BackgroundColor="Transparent" Clicked="clearbtn_Clicked" BorderColor="LightGray" BorderWidth="1" x:Name="clearbtn" IsVisible="false" Padding="5" HeightRequest="30" CornerRadius="5" Margin="0,10,0,0" HorizontalOptions="Center" VerticalOptions="Center" Text="CLEAR" TextColor="Gray" Grid.Column="0" FontAttributes="Bold" Grid.Row="2"></Button>
+                        <Button Background="#009FE3" x:Name="pastebtn" IsVisible="true" Clicked="TapGestureRecognizer_Tapped" Padding="0" Margin="20,10,20,0" CornerRadius="5" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Paste Research Code" TextColor="White" FontAttributes="Bold" Grid.Row="3"></Button>
+                        <Label Text="Have your details for a project? Register below:" x:Name="reglbl" HorizontalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="4"  TextColor="Gray" FontSize="14" FontAttributes="None"  Margin="20,20,20,0" ></Label>
+                        <Button Background="#0D4A87" IsVisible="true" Clicked="Button_Clicked" x:Name="regbtn" Padding="0,0,0,0" Margin="20,5,20,0" Grid.Row="5" CornerRadius="5" BorderColor="#0D4A87" BorderWidth="1" HeightRequest="35" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Register With Details" TextColor="White" FontAttributes="Bold"></Button>
+                        <Label Text="Already registered for a project? Login below:" x:Name="loginlbl" HorizontalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="6"  TextColor="Gray" FontSize="14" FontAttributes="None"  Margin="20,20,20,0" ></Label>
+                        <Button Background="White" IsVisible="true" x:Name="loginbtn" Clicked="TapGestureRecognizer_Tapped_Login" Padding="0,0,0,0" Margin="20,5,20,0" Grid.Row="7" CornerRadius="5" BorderColor="#009FE3" BorderWidth="1" HeightRequest="35" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Login" TextColor="#009FE3" FontAttributes="Bold"></Button>
+                        <!--<Image Source="paste.png" BackgroundColor="Transparent" HeightRequest="50" WidthRequest="50" Margin="0,25,0,0" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" >
+    <Image.GestureRecognizers>
+        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+    </Image.GestureRecognizers>
+</Image>-->
+                    </Grid>
+                    <!--Checking stack-->
+                    <StackLayout x:Name="checkingstack" IsVisible="false" Margin="0,15,0,15" BackgroundColor="White" Padding="10">
+                        <Image Source="tick.png" x:Name="tickloader" IsVisible="false" BackgroundColor="Transparent" Margin="0,0,0,0" HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Start" />
+                        <ActivityIndicator VerticalOptions="StartAndExpand" x:Name="loader" Color="#009FE3" HorizontalOptions="CenterAndExpand" IsRunning="True"/>
+                        <Label Text="Checking code..." x:Name="loaderlabel" HorizontalOptions="Center" HorizontalTextAlignment="Center"  TextColor="Black" FontSize="18" FontAttributes="Bold"  Margin="10,0,10,0" ></Label>
+                        <Button Background="#009FE3" IsVisible="false" x:Name="tryagainbutton" Clicked="tryagainbutton_Clicked" Padding="25,0,25,0" CornerRadius="5" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Center" Text="Try Again" TextColor="White" FontAttributes="Bold"></Button>
+                        <Grid Margin="20,20,10,0" IsVisible="false">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="90*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="tick.png" x:Name="tick1" Grid.Column="0" Grid.Row="0" Opacity="0.2" BackgroundColor="Transparent" Margin="0,0,0,0" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" VerticalOptions="Start" />
+                            <Label Text="Validating your user code to ensure a secure and efficient login experience" x:Name="label1" Grid.Column="1" Grid.Row="0" Opacity="0.2" HorizontalOptions="Start" HorizontalTextAlignment="Start"  TextColor="Black" FontSize="14" FontAttributes="Bold"  Margin="0,0,0,0" ></Label>
+                            <Image Source="tick.png" x:Name="tick2" Grid.Column="0" Opacity="0.2" Grid.Row="1" BackgroundColor="Transparent" Margin="0,20,0,0" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" VerticalOptions="Start" />
+                            <Label Text="Checking for any duplications in our system" Grid.Column="1" Opacity="0.2" Grid.Row="1" x:Name="label2" HorizontalOptions="Start" HorizontalTextAlignment="Start"  TextColor="Black" FontSize="14" FontAttributes="Bold"  Margin="0,20,0,0" ></Label>
+                            <Image Source="tick.png" Opacity="0.2" x:Name="tick3" Grid.Column="0" Grid.Row="2" BackgroundColor="Transparent" Margin="0,20,0,0" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" VerticalOptions="Start" />
+                            <Label Text="Success!" Grid.Column="1" Grid.Row="2" Opacity="0.2" HorizontalOptions="Start" x:Name="label3" HorizontalTextAlignment="Start"  TextColor="Black" FontSize="14" FontAttributes="Bold"  Margin="0,20,0,0" ></Label>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Grid.Row="1" BackgroundColor="White" IsVisible="false" x:Name="bottomstack" VerticalOptions="EndAndExpand" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button BackgroundColor="#009FE3" Grid.Row="0" Text="NEXT" x:Name="btnmain" Clicked="btnmain_Clicked"  TextColor="White" FontAttributes="Bold" CornerRadius="10"  HeightRequest="40" WidthRequest="80" HorizontalOptions="FillAndExpand" Margin="20,0,20,0" IsVisible="true" />
+                    <Button BackgroundColor="White"  Grid.Row="1" IsVisible="false"  Text="Skip for now" x:Name="btnskip" TextColor="Black" FontAttributes="Bold" CornerRadius="10"  HeightRequest="40"  HorizontalOptions="FillAndExpand" Margin="20,0,20,0"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

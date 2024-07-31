@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopup:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PeopleWithResearch.SelectNotificationTime"
+                 xmlns:mopup="clr-namespace:Mopups.Pages;assembly=Mopups"
+                          xmlns:animations="clr-namespace:Mopups.Animations;assembly=Mopups"
+           xmlns:sflistview="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+                 CloseWhenBackgroundIsClicked="False" Shell.NavBarIsVisible="False" NavigationPage.HasNavigationBar="False"
+            >
+    <mopup:PopupPage.Animation>
+        <animations:ScaleAnimation
+                 PositionIn="Center"
+          PositionOut="Center"
+          DurationIn="100"
+          DurationOut="100"
+          HasBackgroundAnimation="True"/>
+    </mopup:PopupPage.Animation>
+
+
+
+    <StackLayout Margin="10,0,10,0"
+    VerticalOptions="CenterAndExpand" 
+    HorizontalOptions="FillAndExpand" 
+   >
+
+
+        <Frame CornerRadius="10" BackgroundColor="White" BorderColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False" >
+            <ScrollView>
+                <StackLayout>
+
+
+                    <StackLayout x:Name="selecttime" Margin="0,20,0,20">
+
+                        <Image Source="notificationicon.png" Margin="0,10,0,5"  VerticalOptions="CenterAndExpand" HeightRequest="50" WidthRequest="50"  HorizontalOptions="CenterAndExpand" />
+
+
+                        <Label Text="Notification Reminder Time" HorizontalOptions="Center" Margin="0,0,0,0" TextColor="Black" FontSize="24" FontAttributes="Bold"></Label>
+
+                        <Label x:Name="detailslbl" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,10,0,0"  TextColor="Black" FontSize="14" FontAttributes="None" VerticalTextAlignment="Center" />
+
+
+                        <sflistview:SfListView x:Name="listView"      AutoFitMode="Height"
+                      Margin="0,20,0,0"
+                                                         BackgroundColor="Transparent"
+                                             HeightRequest="280"
+                                   ItemTapped="listView_ItemTapped"
+                                    SelectionMode="Single"
+                                       VerticalOptions="CenterAndExpand"
+                                     ScrollBarVisibility="Never"
+                           SelectionBackground="Transparent"
+                           Orientation="Vertical" 
+                                              >
+                            <sflistview:SfListView.ItemsLayout>
+                                <sflistview:GridLayout SpanCount="4" />
+                            </sflistview:SfListView.ItemsLayout>
+                            <sflistview:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <!-- Your custom item template layout -->
+                                        <Frame InputTransparent="True" CornerRadius="5" BorderColor="LightGray" HasShadow="False" Padding="0" BackgroundColor="Transparent" Margin="5,5,5,5">
+                                            <StackLayout Padding="5">
+                                                <Label Text="{Binding .}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </sflistview:SfListView.ItemTemplate>
+                            <sflistview:SfListView.SelectedItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <!-- Your custom item template layout -->
+                                        <Frame InputTransparent="True" CornerRadius="5" BorderColor="#009fe3" HasShadow="False" Padding="0" BackgroundColor="#ccebf9" Margin="5,5,5,5">
+                                            <StackLayout Padding="5">
+                                                <Label Text="{Binding .}" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </sflistview:SfListView.SelectedItemTemplate>
+                        </sflistview:SfListView>
+
+                        <Button BackgroundColor="#009fe3" Text="Save"  x:Name="btnsubmit" Clicked="btnsubmit_Clicked" TextColor="White" FontAttributes="Bold" CornerRadius="10"  HeightRequest="40" WidthRequest="80" HorizontalOptions="FillAndExpand" Margin="20,0,20,0" IsVisible="true" />
+
+
+
+                    </StackLayout>
+
+
+
+
+
+
+
+
+                    <StackLayout Margin="0,0,0,0" x:Name="completedtack" IsVisible="false">
+
+                        <Image Source="successtick.png" Margin="0,10,0,5"  VerticalOptions="CenterAndExpand" HeightRequest="50" WidthRequest="50"  HorizontalOptions="CenterAndExpand" />
+
+
+
+                        <Label Text="Time Saved"  HorizontalOptions="Center"  TextColor="Black" FontSize="24" FontAttributes="Bold" VerticalTextAlignment="Center" >
+
+                        </Label>
+
+                        <Label Text="Thank You! Your notification time has been saved." HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,10,0,0"  TextColor="Black" FontSize="14" FontAttributes="None" VerticalTextAlignment="Center" />
+
+
+
+                    </StackLayout>
+
+
+
+                </StackLayout>
+
+
+
+
+            </ScrollView>
+        </Frame>
+
+
+    </StackLayout>
+
+
+</mopup:PopupPage>

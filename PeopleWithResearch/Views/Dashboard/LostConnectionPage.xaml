@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PeopleWithResearch.LostConnectionPage"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand">
+
+
+            <Image Source="nowifi.png"  HeightRequest="100" WidthRequest="100" HorizontalOptions="CenterAndExpand"  Margin="0,0,0,0" >
+
+            </Image>
+
+
+            <Label Text="No Internet Connection" HorizontalOptions="Center" HorizontalTextAlignment="Center"  TextColor="Black" FontSize="18" FontAttributes="Bold"  Margin="0,20,0,0" ></Label>
+
+            <Label Text="You're currently offline. Check your interenet connection while we try to reconnect you." HorizontalOptions="Center" HorizontalTextAlignment="Center"  TextColor="Black" FontSize="14" FontAttributes="None"  Margin="20,10,20,0" ></Label>
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

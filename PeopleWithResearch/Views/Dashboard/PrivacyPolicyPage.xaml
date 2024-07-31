@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F1F2F6"
+    x:Class="PeopleWithResearch.PrivacyPolicyPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20,20,10,0" VerticalOptions="FillAndExpand">
+
+                <Label x:Name="titlelabel" TextColor="Black"  FontAttributes="Bold" FontSize="18" Margin="0,0,0,20"/>
+
+                <Editor x:Name="bodylabel" HeightRequest="10000" BackgroundColor="Transparent" IsReadOnly="True" TextColor="Black" FontSize="12"/>
+
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
