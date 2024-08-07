@@ -3182,6 +3182,18 @@ namespace PeopleWithResearch
             }
 
         }
+
+        private async void Button_Clicked_4(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new MainDashboard(), false);
+                Navigation.RemovePage(this);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }
 
