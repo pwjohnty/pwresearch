@@ -15,6 +15,8 @@ using Microsoft.Maui.ApplicationModel.DataTransfer;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.ApplicationModel.Communication;
 using Syncfusion.Maui.TabView;
+//using CoreImage;
+using Plugin.LocalNotification;
 
 namespace PeopleWithResearch
 {
@@ -54,6 +56,7 @@ namespace PeopleWithResearch
 
         public ObservableCollection<advert> getad = new ObservableCollection<advert>();
 
+        public TimeSpan timeUntilNextQuestionnaire = new TimeSpan();
         public MainDashboard()
         {
             InitializeComponent();
@@ -91,7 +94,9 @@ namespace PeopleWithResearch
 
             Analytics.TrackEvent("PeopleWithResearch Dashboard Opened");
 
+            NetworkService.Instance.ConnectivityChanged += OnConnectivityChanged;
 
+            checknetwork();
 
 
             // //refresh the queestionnaire and status
@@ -361,7 +366,14 @@ namespace PeopleWithResearch
 
             getalldata();
 
-           // AddNotificationsTags();
+            // AddNotificationsTags();
+
+            if(string.IsNullOrEmpty(Helpers.Settings.AndroidNote))
+            {
+                Preferences.Set("androidnotekey", "firstreg");
+            }
+
+            
 
 
             //profile section
@@ -1248,7 +1260,7 @@ namespace PeopleWithResearch
             //On<iOS>().SetUseSafeArea(false);
 
 
-            welcomelbl.Text = "Hi hbdchbjsjbjnjdjs" + Helpers.Settings.FirstName;
+            welcomelbl.Text = "Hi " + Helpers.Settings.FirstName;
 
             userquestionnaires = userquestionnairepassed;
 
@@ -2407,6 +2419,7 @@ namespace PeopleWithResearch
                 {
                     weekNumber = 0;
                 }
+          
                 // Calculate the difference in days
 
                 int differenceInDays = (int)(plus7days - DateTime.Now).TotalDays;
@@ -2423,6 +2436,15 @@ namespace PeopleWithResearch
                     progresstextlbl.IsVisible = false;
                     progressgrid.IsVisible = false;
                 }
+                else if (weekNumber > 52)
+                {
+                    finishedframe.IsVisible = true;
+                    finishtextlbl.Text = "Thank you for taking part in " + getad[0].AdvertTitle + ". You have now completed the study. Your help and participation is greatly appreciated. You can now close the app. If you believe this to be an error, please contact: support@peoplewith.com";
+                    mainquestionview.IsVisible = false;
+                    fulbl.IsVisible = false;
+                    timergrid.IsVisible = false;
+                    weekNumber = 52;
+                }
                 else
                 {
 
@@ -2433,11 +2455,18 @@ namespace PeopleWithResearch
 
                 //find out the timer time to the next questionnaire
                 DateTime nextQuestionnaireDate = plus7days.AddDays((weekNumber) * 7);
-                TimeSpan timeUntilNextQuestionnaire = nextQuestionnaireDate - currentDate;
+                timeUntilNextQuestionnaire = nextQuestionnaireDate - currentDate;
 
 
                 weeknumlbl.Text = "Week " + weekNumber.ToString() + " of 52";
                 weeknumlbl2.Text = "Week " + weekNumber.ToString() + " of 52";
+
+                //set the progress
+                double progress = (double)weekNumber / 52;
+
+                double progrosspercent = progress * 100;
+
+                topprogress.Progress = progrosspercent;
 
                 // Start the timer
                 // TODO Xamarin.Forms.Device.StartTimer is no longer supported. Use Microsoft.Maui.Dispatching.DispatcherExtensions.StartTimer instead. For more details see https://learn.microsoft.com/en-us/dotnet/maui/migration/forms-projects#device-changes
@@ -2445,18 +2474,19 @@ namespace PeopleWithResearch
                 //{
 
 
-                    // Update the label text with the remaining time
-                    //  timerlbl.Text = $"Time remaining: {timeRemaining.Days} :, {timeRemaining.Hours} :, {timeRemaining.Minutes} :, {timeRemaining.Seconds}";
+                // Update the label text with the remaining time
+                //  timerlbl.Text = $"Time remaining: {timeRemaining.Days} :, {timeRemaining.Hours} :, {timeRemaining.Minutes} :, {timeRemaining.Seconds}";
 
-                    dayslbl.Text = timeUntilNextQuestionnaire.Days.ToString("D2");
+                dayslbl.Text = timeUntilNextQuestionnaire.Days.ToString("D2");
                     hourslbl.Text = timeUntilNextQuestionnaire.Hours.ToString("D2");
                     minuteslbl.Text = timeUntilNextQuestionnaire.Minutes.ToString("D2");
 
 
-                    // Return true to continue the timer, or false to stop it
+                // Return true to continue the timer, or false to stop it
                 //    return timeUntilNextQuestionnaire > TimeSpan.Zero;
                 //});
 
+                androidnotificationadd();
 
 
             }
@@ -3158,16 +3188,21 @@ namespace PeopleWithResearch
                 weeknumlbl.Text = "Week " + weekNumber.ToString() + " of 52";
                 weeknumlbl2.Text = "Week " + weekNumber.ToString() + " of 52";
 
+                //set the progress
+                double progress = (double)weekNumber / 52;
+
+                topprogress.Progress = progress;
+
                 // Start the timer
                 // TODO Xamarin.Forms.Device.StartTimer is no longer supported. Use Microsoft.Maui.Dispatching.DispatcherExtensions.StartTimer instead. For more details see https://learn.microsoft.com/en-us/dotnet/maui/migration/forms-projects#device-changes
                 //Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                 //{
 
 
-                    // Update the label text with the remaining time
-                    //  timerlbl.Text = $"Time remaining: {timeRemaining.Days} :, {timeRemaining.Hours} :, {timeRemaining.Minutes} :, {timeRemaining.Seconds}";
+                // Update the label text with the remaining time
+                //  timerlbl.Text = $"Time remaining: {timeRemaining.Days} :, {timeRemaining.Hours} :, {timeRemaining.Minutes} :, {timeRemaining.Seconds}";
 
-                    dayslbl.Text = timeUntilNextQuestionnaire.Days.ToString("D2");
+                dayslbl.Text = timeUntilNextQuestionnaire.Days.ToString("D2");
                     hourslbl.Text = timeUntilNextQuestionnaire.Hours.ToString("D2");
                     minuteslbl.Text = timeUntilNextQuestionnaire.Minutes.ToString("D2");
 
@@ -3192,6 +3227,100 @@ namespace PeopleWithResearch
             }
             catch (Exception ex)
             {
+            }
+        }
+
+        async void androidnotificationadd()
+        {
+            try
+            {
+
+                if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+                {
+
+                    if (Helpers.Settings.AndroidNote == "firstreg")
+                    {
+
+                        Preferences.Set("androidnotekey", "done");
+
+                        await Permissions.RequestAsync<Permissions.PostNotifications>();
+
+                        setupweeklynotifications();
+                    }
+
+                }
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        private async void OnConnectivityChanged(object sender, bool isConnected)
+        {
+            if (!isConnected)
+            {
+                await Navigation.PushAsync(new LostConnectionPage(), false);
+            }
+        }
+
+        async void checknetwork()
+        {
+            try
+            {
+                NetworkAccess accessType = Connectivity.Current.NetworkAccess;
+
+                if (accessType != NetworkAccess.Internet)
+                {
+                    await Navigation.PushAsync(new LostConnectionPage(), false);
+                    Navigation.RemovePage(this);
+                    return;
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        async void setupweeklynotifications()
+        {
+            try
+            {
+                //calaulte the time to start notification
+                // Parse the string day
+
+                var sd = DateTime.Parse(Helpers.Settings.CreatedAt);
+                var currentDate = DateTime.Now;
+
+                var datetimefornotifcation = currentDate + timeUntilNextQuestionnaire;
+
+                var notdescription = "Tap here to complete the IID3 Weekly Follow-up.";
+
+                var title = "IID3 Study Weekly Follow - up - Week: " + weekNumber;
+                Random random = new Random();
+                int randomId = random.Next(100000, 99999999);
+
+                var notification = new NotificationRequest
+                {
+                    NotificationId = randomId,
+                    Title = title,
+                    Description = notdescription,
+                    BadgeNumber = 0,
+                    Schedule = new NotificationRequestSchedule
+                    {
+                        NotifyTime = datetimefornotifcation,
+                        RepeatType = NotificationRepeat.Weekly,
+                        NotifyRepeatInterval = null
+                    }
+                };
+                LocalNotificationCenter.Current.Show(notification);
+
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

@@ -42,6 +42,7 @@ namespace PeopleWithResearch
                     mainimg.WidthRequest = 150;
                 }
 
+                
                 Checkifappisupdated();
 
                 Checkifuserisloggedin();
@@ -53,6 +54,8 @@ namespace PeopleWithResearch
                 System.Diagnostics.Debug.WriteLine($"DashboardPage initialization error: {ex.Message}");
             }
         }
+
+    
 
         public async Task Checkifuserisloggedin()
         {

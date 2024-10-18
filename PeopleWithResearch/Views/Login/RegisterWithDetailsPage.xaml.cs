@@ -250,7 +250,20 @@ namespace PeopleWithResearch
                     }
                     else
                     {
-                        newuser.Signupid = signupcode;
+
+                        if (checksignupcodes[0].StudyOpen == false)
+                        {
+
+                          //  var st = checksignupcodes[0].SiteTitle;
+                          //  await DisplayAlert("Test", "test", "Ok");
+                           Application.Current.MainPage = new NavigationPage(new NotificationQuestionGP(checksignupcodes[0].AdvertTitle));
+                            return;
+                        }
+                        else
+                        {
+
+                            newuser.Signupid = signupcode;
+                        }
                     }
 
                     topprogress.Progress += progressamount;

@@ -730,5 +730,13 @@ namespace PeopleWithResearch.Helpers
             set => Preferences.Set(DeviceIDKey, value);
         }
 
+        private const string AndroidNoteKey = "androidnotekey";
+        private static readonly string AndroidNoteDefault = string.Empty;
+        public static string AndroidNote
+        {
+            get => Preferences.Get(AndroidNoteKey, AndroidNoteDefault);
+            set => Preferences.Set(AndroidNoteKey, value);
+        }
+
     }
 }

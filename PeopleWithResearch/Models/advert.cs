@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using Microsoft.Datasync.Client;
 using Newtonsoft.Json;
 namespace PeopleWithResearch
@@ -20,6 +21,8 @@ namespace PeopleWithResearch
         bool consent;
         bool additionalConsent;
         bool consentReminder;
+        string siteTitle;
+        bool studyOpen;
 
 
         /// <summary>
@@ -127,6 +130,21 @@ namespace PeopleWithResearch
         {
             get { return consentReminder; }
             set { consentReminder = value; }
+        }
+
+        [JsonProperty(PropertyName = "siteTitle")]
+        public string SiteTitle
+        {
+            get { return siteTitle; }
+            set { siteTitle = value; }
+        }
+
+
+        [JsonProperty(PropertyName = "studyOpen")]
+        public bool StudyOpen
+        {
+            get { return studyOpen; }
+            set { studyOpen = value; }
         }
 
 

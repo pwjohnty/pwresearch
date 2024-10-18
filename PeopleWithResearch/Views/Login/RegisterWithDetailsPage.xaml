@@ -80,7 +80,7 @@ Grid.Row="0" HorizontalOptions="Center"
 
                             <Label Text="Sign-Up Code" HorizontalOptions="Center" FontAttributes="Bold" TextColor="Black" FontSize="26" />
 
-                            <Label Text="Enter a sign-up code provided by a Healthcare Professional below:" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Gray" FontSize="15"/>
+                            <Label Text="Enter a sign-up code provided by a Healthcare Professional or GP below:" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Gray" FontSize="15"/>
 
                             <inputLayout:SfTextInputLayout
                 Stroke="#009fe3"
@@ -98,6 +98,7 @@ Grid.Row="0" HorizontalOptions="Center"
                                 <Entry x:Name="signuptxt" Placeholder="Enter Code" TextChanged="signuptxt_TextChanged" HorizontalTextAlignment="Center"  HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="26"  Margin="0,0,0,0" />
                             </inputLayout:SfTextInputLayout>
 
+                         
 
                         </StackLayout>
                     </Frame>
@@ -109,8 +110,8 @@ Grid.Row="0" HorizontalOptions="Center"
 
                         <StackLayout>
 
-                            <Label Text="Your NHS number" HorizontalOptions="Center" HorizontalTextAlignment="Center"  FontAttributes="Bold" TextColor="Black" FontSize="26" />
-                            <Label Text="Please enter your NHS Number as provided by your Healthcare provider and press 'Next' to continue."  HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Gray" FontSize="15" />
+                            <Label Text="Your NHS number or CHI Number" HorizontalOptions="Center" HorizontalTextAlignment="Center"  FontAttributes="Bold" TextColor="Black" FontSize="26" />
+                            <Label Text="Please enter your NHS Number or CHI Number below and press 'Next' to continue."  HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Gray" FontSize="15" />
 
                             <inputLayout:SfTextInputLayout
     
@@ -132,8 +133,9 @@ Grid.Row="0" HorizontalOptions="Center"
                             <Label  HorizontalOptions="Center" Margin="0,20,0,0" HorizontalTextAlignment="Center" TextColor="Gray" FontSize="12" >
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="If you don’t know your NHS number, you can find it out from the link below:"/>
+                                        <Span Text="If you live in England or Wales and don’t know your NHS number, you can find it out from the link below:" TextColor="Gray"/>
                                         <Span Text=" &#10;https://www.nhs.uk/nhs-services/online-services/find-nhs-number/" TextColor="#009fe3" />
+                                        <Span Text=" &#10;&#10;If you live in Scotland, you can find out CHI Number on any communication you may have received from your GP practice. This includes letters and prescriptions." TextColor="Gray" />
 
                                     </FormattedString>
                                 </Label.FormattedText>

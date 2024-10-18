@@ -26,105 +26,119 @@ namespace PeopleWithResearch
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-            Window.SetStatusBarColor(Android.Graphics.Color.Transparent);
-            Window.SetNavigationBarColor(Android.Graphics.Color.Transparent);
-
-            // Set the screen orientation to portrait
-            RequestedOrientation = ScreenOrientation.Portrait;
-
-            AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
-
             try
             {
-                Firebase.FirebaseApp.InitializeApp(this);
+                base.OnCreate(savedInstanceState);
+                Window.SetStatusBarColor(Android.Graphics.Color.Transparent);
+                Window.SetNavigationBarColor(Android.Graphics.Color.Transparent);
 
+                // Set the screen orientation to portrait
+                RequestedOrientation = ScreenOrientation.Portrait;
 
-                //var hubName = "PWDevHub";
-                //var connectionString = "Endpoint=sb://PWDevelopment.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=ZiwsFi5CJVNru6prZMix/55OIDEZJvXumOSBkRjU4gM="; // Can be found in Access policy. Use Listen connection
+                AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
 
-                hub = NotificationHubClient.CreateClientFromConnectionString(Constants.ListenConnectionString, Constants.NotificationHubName);
-
-                CreateNotificationChannel();
-
-                //First Prompt to allow Notifications, From android 13 and above
-                if(ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) != Permission.Granted)
+                try
                 {
-                    ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.PostNotifications }, 0);
+                    Firebase.FirebaseApp.InitializeApp(this);
+
+
+                    //var hubName = "PWDevHub";
+                    //var connectionString = "Endpoint=sb://PWDevelopment.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=ZiwsFi5CJVNru6prZMix/55OIDEZJvXumOSBkRjU4gM="; // Can be found in Access policy. Use Listen connection
+
+                    hub = NotificationHubClient.CreateClientFromConnectionString(Constants.ListenConnectionString, Constants.NotificationHubName);
+
+                    CreateNotificationChannel();
+
+                    //First Prompt to allow Notifications, From android 13 and above
+                 //   if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.PostNotifications) != Permission.Granted)
+                  //  {
+                  //      ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.PostNotifications }, 0);
+                  //  }
+                }
+                catch (Exception ex)
+                {
+                }
+
+                // Handle notification tap if the activity was launched from a notification
+                if (Intent?.Extras != null)
+                {
+                    HandleNotificationTap(Intent);
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-            }
 
-            // Handle notification tap if the activity was launched from a notification
-            if (Intent?.Extras != null)
-            {
-                HandleNotificationTap(Intent);
             }
 
         }
 
         private async void CreateNotificationChannel()
         {
-            var token = await SecureStorage.GetAsync("FireBaseToken");
-
-            if (token == null)
+            try
             {
-                token = FirebaseMessaging.Instance.GetToken().ToString();
-            }
+                var token = await SecureStorage.GetAsync("FireBaseToken");
 
-            Helpers.Settings.Token = token;
-            Helpers.Settings.DeviceID = GetDeviceId();
-
-            //List<string> tags = new List<string>();
-
-            //if (!string.IsNullOrEmpty(Helpers.Settings.UserKey))
-            //{
-            //    tags.Add(Helpers.Settings.UserKey);
-            //}
-
-            //if (!string.IsNullOrEmpty(Helpers.Settings.SignUp))
-            //{
-            //    tags.Add(Helpers.Settings.SignUp);
-            //}
-
-            //tags.Add("IID3");
-            IList<string> tags = new List<string>();
-
-            if (!string.IsNullOrEmpty(Helpers.Settings.UserKey))
-            {
-                tags.Add(Helpers.Settings.UserKey);
-            }
-
-            if (!string.IsNullOrEmpty(Helpers.Settings.SignUp))
-            {
-                tags.Add(Helpers.Settings.SignUp);
-            }
-
-            var installation = new Microsoft.Azure.NotificationHubs.Installation
-            {
-                InstallationId = GetDeviceId(),
-                PushChannel = token,
-                Platform = NotificationPlatform.FcmV1,
-                Tags = tags
-            };
-            await hub.CreateOrUpdateInstallationAsync(installation);
-
-            //await SharedNotificationService.RegisterDeviceAsync(token, NotificationPlatform.Fcm, new string[] { "InitialTag" });
-
-
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
-            {
-                var channelName = "default";
-                var channelDescription = string.Empty;
-                var channel = new NotificationChannel(channelName, channelName, NotificationImportance.High)
+                if (token == null)
                 {
-                    Description = channelDescription
-                };
+                    token = FirebaseMessaging.Instance.GetToken().ToString();
+                }
 
-                var notificationManager = (NotificationManager)GetSystemService(NotificationService);
-                notificationManager.CreateNotificationChannel(channel);
+                Helpers.Settings.Token = token;
+                Helpers.Settings.DeviceID = GetDeviceId();
+
+                //List<string> tags = new List<string>();
+
+                //if (!string.IsNullOrEmpty(Helpers.Settings.UserKey))
+                //{
+                //    tags.Add(Helpers.Settings.UserKey);
+                //}
+
+                //if (!string.IsNullOrEmpty(Helpers.Settings.SignUp))
+                //{
+                //    tags.Add(Helpers.Settings.SignUp);
+                //}
+
+                //tags.Add("IID3");
+                IList<string> tags = new List<string>();
+
+                if (!string.IsNullOrEmpty(Helpers.Settings.UserKey))
+                {
+                    tags.Add(Helpers.Settings.UserKey);
+                }
+
+                if (!string.IsNullOrEmpty(Helpers.Settings.SignUp))
+                {
+                    tags.Add(Helpers.Settings.SignUp);
+                }
+
+                var installation = new Microsoft.Azure.NotificationHubs.Installation
+                {
+                    InstallationId = GetDeviceId(),
+                    PushChannel = token,
+                    Platform = NotificationPlatform.FcmV1,
+                    Tags = tags
+                };
+                await hub.CreateOrUpdateInstallationAsync(installation);
+
+                //await SharedNotificationService.RegisterDeviceAsync(token, NotificationPlatform.Fcm, new string[] { "InitialTag" });
+
+
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+                {
+                    var channelName = "default";
+                    var channelDescription = string.Empty;
+                    var channel = new NotificationChannel(channelName, channelName, NotificationImportance.High)
+                    {
+                        Description = channelDescription
+                    };
+
+                    var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+                    notificationManager.CreateNotificationChannel(channel);
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 
@@ -145,12 +159,19 @@ namespace PeopleWithResearch
         // Add this method to handle the navigation
         protected override void OnNewIntent(Intent intent)
         {
-            base.OnNewIntent(intent);
-
-            // Handle notification tap if a new intent is received
-            if (intent?.Extras != null)
+            try
             {
-                HandleNotificationTap(intent);
+                base.OnNewIntent(intent);
+
+                // Handle notification tap if a new intent is received
+                if (intent?.Extras != null)
+                {
+                    HandleNotificationTap(intent);
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 

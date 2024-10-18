@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Shell.NavBarIsVisible="False"
              x:Class="PeopleWithResearch.LostConnectionPage"
              BackgroundColor="White">
     <ContentPage.Content>
@@ -16,6 +16,8 @@
 
             <Label Text="You're currently offline. Check your interenet connection while we try to reconnect you." HorizontalOptions="Center" HorizontalTextAlignment="Center"  TextColor="Black" FontSize="14" FontAttributes="None"  Margin="20,10,20,0" ></Label>
 
+
+            <Button Text="Try Again" BackgroundColor="#009fe3" TextColor="White" Margin="20" Clicked="Button_Clicked"  HorizontalOptions="FillAndExpand" FontSize="12"/>
 
 
         </StackLayout>

@@ -240,6 +240,7 @@ namespace PeopleWithResearch
                             Preferences.Set("clinicaltrial", "Yes");
                             Preferences.Set("createdat", LogginedInUsers[0].Createdat.ToString());
                             Preferences.Set("usergpid", LogginedInUsers[0].Gpid);
+                            Preferences.Set("androidnotekey", "firstreg");
 
                             //getcloudusermednotifications();
                             //getclouduserappointmentnotifications();

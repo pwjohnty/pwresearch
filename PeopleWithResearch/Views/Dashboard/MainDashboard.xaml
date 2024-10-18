@@ -328,11 +328,39 @@
 
                                     </Grid>
                                 </Frame>
+                                
+                                
+                                <!--Completed study frame-->
+                                <Frame x:Name="finishedframe" IsVisible="false" HasShadow="False" Margin="20,20,20,0" BackgroundColor="White" BorderColor="White" CornerRadius="10" Padding="0,0,0,10">
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100*"/>
+                                           
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Source="finish.png" Grid.RowSpan="1" Grid.Row="0" HeightRequest="100" WidthRequest="100"  VerticalOptions="Center"  Grid.Column="0" HorizontalOptions="CenterAndExpand" Margin="0,10,0,0"></Image>
+
+                                        <Label Text="Thank You" VerticalOptions="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1"  HorizontalOptions="Center" Margin="0,10,0,0" TextColor="Black" FontSize="20" FontAttributes="Bold"></Label>
+
+                                        <Label x:Name="finishtextlbl" VerticalOptions="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="2" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="10,5,10,0" TextColor="Black" FontSize="12" FontAttributes="None"></Label>
+
+                                    </Grid>
+                                </Frame>
                                 <!--Next Study avaiable-->
 
-                                <Label Text="Next follow-up available in:" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,10,0,5" TextColor="Gray" FontSize="12" FontAttributes="None"></Label>
+                                <Label Text="Next follow-up available in:" x:Name="fulbl" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,10,0,5" TextColor="Gray" FontSize="12" FontAttributes="None"></Label>
 
-                                <Grid Margin="30,0,30,0">
+                                <Grid Margin="30,0,30,0" x:Name="timergrid">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="31*"/>
                                         <ColumnDefinition Width="4*"/>

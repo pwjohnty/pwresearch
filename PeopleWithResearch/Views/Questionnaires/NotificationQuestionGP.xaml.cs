@@ -77,6 +77,23 @@ namespace PeopleWithResearch
         }
 
 
+        public NotificationQuestionGP(string adverttitle)
+        {
+            InitializeComponent();
+            questionamanager = QuestionManager.DefaultManager;
+            answermanager = AnswerManager.DefaultManager;
+            incidentsManager = IncidentsManager.DefaultManager;
+            userquestionnairemanager = UserQuestionnaireManager.DefaultManager;
+            incidentsmanager = IncidentsManager.DefaultManager;
+            userquestionanswermanager = UserQuestionAnswerManager.DefaultManager;
+
+            studyclosed.IsVisible = true;
+
+            studycloseddetailslbl.Text = "Thank you for your interest in the study. Unfortunately registration is now closed for the " + adverttitle + ". If you believe this to be an error, please contact: support@peoplewith.com";
+
+
+
+        }
 
         async void getdetailsforuser()
         {

@@ -78,6 +78,8 @@ public partial class QuestionnairePageHardCoded : ContentPage
         progresslbl.IsVisible = true;
         questionnaireprogressbar.IsVisible = true;
 
+        Shell.SetNavBarIsVisible(this, false);
+
         getdatesforlist();
 
         insertnewuserquestionnaire = userquestionnairepassed;

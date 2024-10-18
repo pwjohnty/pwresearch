@@ -2105,9 +2105,10 @@ namespace PeopleWithResearch
                     }
 
 
-                    //add the value to the dashboard column to allow the consent to appear in the dash
 
-                    newuser.Dashboard = "True";
+                        //add the value to the dashboard column to allow the consent to appear in the dash
+
+                        newuser.Dashboard = "True";
                     newuser.Referral = "IID3";
 
                     //add the user to the db
@@ -2157,7 +2158,7 @@ namespace PeopleWithResearch
 
                     //add the activation date to this helper so you can determine the date the user signed up
                     Preferences.Set("createdatdateonly", formattedDate.ToString());
-
+                    Preferences.Set("androidnotekey", "firstreg");
                     //if (newuser.Clinicaltrails == true)
                     //{
                     //    Preferences.Set("clinicaltrial", "Yes");
@@ -3235,6 +3236,18 @@ namespace PeopleWithResearch
 
             }
             catch (Exception ex)
+            {
+
+            }
+        }
+
+        async void setupweeklynotifications()
+        {
+            try
+            {
+
+            }
+            catch(Exception ex)
             {
 
             }

@@ -17,9 +17,18 @@ namespace YourAppName.Droid.Services
     {
         public bool GetApplicationNotificationSettings()
         {
+            try
+            {
 
-            NotificationManager manager = (NotificationManager)Application.Context.GetSystemService(Android.Content.Context.NotificationService);
-            return manager.AreNotificationsEnabled();
+
+
+                NotificationManager manager = (NotificationManager)Application.Context.GetSystemService(Android.Content.Context.NotificationService);
+                return manager.AreNotificationsEnabled();
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
 
         }
     }
